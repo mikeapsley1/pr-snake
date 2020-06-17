@@ -14,6 +14,11 @@ node ('ubuntu-slave'){
         			}
          }
 
+        stage('Dockle') {
+         sh "dockle mikebroomfield/snake:latest"
+       //  sh "dockle --exit-code 1 --exit-level fatal mikebroomfield/snake:latest"
+      }
+    
   
     stage('Pull') {
          sh "docker-compose down"
