@@ -15,8 +15,8 @@ node ('ubuntu-slave'){
          }
     
      stage('Trivy Scan') {
-         sh "trivy --no-progress --exit-code 0 python:3.4-alpine"
-         // sh "trivy --no-progress --exit-code 1 --severity HIGH,CRITICAL python:3.4-alpine"
+         // sh "trivy --no-progress --exit-code 0 python:3.4-alpine"
+         sh "trivy --no-progress --exit-code 1 --severity HIGH,CRITICAL -f json -o results.json python:3.4-alpine"
       }
   
     
