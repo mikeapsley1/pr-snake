@@ -16,7 +16,8 @@ node ('ubuntu-slave'){
 
         stage('Synk') {
          
-         sh "snyk test"
+         // test for high vulnerabilies
+         sh "snyk test --severity-threshold high"
             
       }
     
