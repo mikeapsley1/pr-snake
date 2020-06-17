@@ -16,12 +16,15 @@ node ('ubuntu-slave'){
 
         stage('Synk') {
          
-         // test for high vulnerabilies
-         // sh "snyk test --severity-threshold=high"
+            // report on all vulnerabilities
+            snyk test --json > report.json
             
-         sh '''
-            snyk test --json | jq '. | (.vulnerabilities[] | select(.CVSSv3 | contains("AV:N")))'
-            '''
+            // test for high vulnerabilies
+            sh "snyk test --severity-threshold=high"
+            
+
+            
+
             
       }
     
