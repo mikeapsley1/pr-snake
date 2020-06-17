@@ -19,11 +19,11 @@ node ('ubuntu-slave'){
          // sh "trivy --no-progress --exit-code 1 --severity HIGH,CRITICAL python:3.4-alpine"
       }
   
-    /*
+    
     stage('Pull') {
          sh "docker-compose down"
          sh "docker-compose up -d"	
       }
-     */
+     
 
 }
