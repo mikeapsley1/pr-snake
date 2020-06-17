@@ -26,7 +26,7 @@ node ('ubuntu-slave'){
          sh "dockle --exit-code 0 mikebroomfield/snake"
          
          // Fail on high & critical vulnerabilities
-         // sh "dockle --exit-code 1 --exit-level fatal mikebroomfield/snake:latest"
+         sh "dockle --exit-code 1 --exit-level fatal mikebroomfield/snake:latest"
             
             
       }
