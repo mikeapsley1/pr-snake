@@ -14,20 +14,9 @@ node ('ubuntu-slave'){
         			}
          }
 
-        stage('Dockle') {
-         sh "dockle mikebroomfield/snake:latest"
-         //sh "dockle -f json -o results.json --exit-code 1 --exit-level fatal mikebroomfield/snake:latest"
-            
-            
-         // Build Report
-         sh "dockle --exit-code 0 -f json -o results.json mikebroomfield/snake"
+        stage('Synk') {
          
-         // Print Report 
-         sh "dockle --exit-code 0 mikebroomfield/snake"
-         
-         // Fail on critical/fatal vulnerabilities
-         // sh "dockle --exit-code 1 --exit-level fatal mikebroomfield/snake:latest"
-            
+         sh "snyk test"
             
       }
     
