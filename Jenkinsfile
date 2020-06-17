@@ -19,9 +19,11 @@ node ('ubuntu-slave'){
             // report on all vulnerabilities
             sh "snyk test --json > report.json 2>/dev/null || exit 0"
             
-            // test for high vulnerabilies
+            // print high vulnerabilies
             sh "snyk test --severity-threshold=high 2>/dev/null || exit 0"
             
+            // fail the build on high vulnerabilities
+            // sh "snyk test --severity-threshold=high"
 
             
 
