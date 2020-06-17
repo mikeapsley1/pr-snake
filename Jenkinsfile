@@ -20,7 +20,7 @@ node ('ubuntu-slave'){
          // sh "snyk test --severity-threshold=high"
             
          sh '''
-            snyk test --json | jq '. | (.vulnerabilities[] | select(.CVSSv3 | contains("AV:N")))'"
+            snyk test --json | jq '. | (.vulnerabilities[] | select(.CVSSv3 | contains("AV:N")))'
             '''
             
       }
