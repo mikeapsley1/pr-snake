@@ -17,7 +17,7 @@ node ('ubuntu-slave'){
         stage('Synk') {
          
             // report on all vulnerabilities
-            snyk test --json > report.json
+            snyk "test --json > report.json"
             
             // test for high vulnerabilies
             sh "snyk test --severity-threshold=high"
