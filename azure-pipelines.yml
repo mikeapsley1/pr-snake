@@ -7,6 +7,14 @@ pool:
 
 steps:
 
+- task: SnykSecurityScan@0
+  inputs:
+    serviceConnectionEndpoint: 'snyk'
+    testType: 'app'
+    severityThreshold: 'high'
+    monitorOnBuild: false
+    failOnIssues: true
+
 - task: Docker@2
   inputs:
     containerRegistry: 'dockerhub'
