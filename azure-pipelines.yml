@@ -1,6 +1,6 @@
 
 trigger:
-- master
+- trivy
 
 pool:
   vmImage: 'ubuntu-latest'
