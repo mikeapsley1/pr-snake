@@ -27,7 +27,7 @@ steps:
       tar zxvf trivy_${VERSION}_Linux-64bit.tar.gz
 
       # Build report
-      ./trivy --no-progress -f json mikebroomfield/az-snake:$(Build.BuildId)
+      ./trivy --no-progress -f json -o results.json mikebroomfield/az-snake:$(Build.BuildId)
 
       # Print report
       ./trivy --exit-code 0 --no-progress --severity HIGH mikebroomfield/az-snake:$(Build.BuildId)
