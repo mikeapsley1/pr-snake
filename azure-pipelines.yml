@@ -32,3 +32,5 @@ steps:
       
       # Fail on critical checkpoints
       ./dockle --exit-code 1 --exit-level fatal mikebroomfield/az-snake:$(Build.BuildId) >> /dev/null
+
+  displayName: 'Trivy Check Container'
