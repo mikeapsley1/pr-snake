@@ -19,6 +19,7 @@ steps:
     Dockerfile: '**/Dockerfile'
 
 - script: |
+      # Install Trivy
       apt-get update
       apt-get install -y rpm curl wget
       VERSION=$(
@@ -28,10 +29,14 @@ steps:
       )
       wget https://github.com/aquasecurity/trivy/releases/download/v${VERSION}/trivy_${VERSION}_Linux-64bit.tar.gz
       tar zxvf trivy_${VERSION}_Linux-64bit.tar.gz
+
       # Build report
       ./trivy --no-progress -f json mikebroomfield/az-snake:$(Build.BuildId)
+
       # Print report
-      ./trivy --exit-code 0 --no-progress --severity HIGH mikebroomfield/az-snake
+      ./trivy --exit-code 0 --no-progress --severity HIGH mikebroomfield/az-snake:$(Build.BuildId)
+
       # Fail on critical vulnerabilities
-      ./trivy --exit-code 1 --no-progress --severity HIGH mikebroomfield/az-snake
+      ./trivy --exit-code 1 --no-progress --severity HIGH mikebroomfield/az-snake:$(Build.BuildId)
+
   displayName: 'Trivy Check Container'
