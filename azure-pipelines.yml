@@ -30,11 +30,12 @@ steps:
       tar zxvf dockle_${VERSION}_Linux-64bit.tar.gz
       
       # Build report
-      ./dockle -f ${{ parameters.reportFormat }} -o ${{ parameters.reportPath }} ${{ parameters.image }}
+      ./dockle -f json -o dockle-report.json mikebroomfield/az-snake:$(Build.BuildId)
       
       # Print report
-      ./dockle --exit-code 0 ${CHECKPOINTS_TO_IGNORE} ${{ parameters.image }}
+      ./dockle --exit-code 0 mikebroomfield/az-snake:$(Build.BuildId)
       
       # Fail on critical checkpoints
-      ./dockle --exit-code 1 ${CHECKPOINTS_TO_IGNORE} --exit-level ${{ parameters.failLevel }} ${{ parameters.image }} >> /dev/null
+      ./dockle --exit-code 1 --exit-level fatal mikebroomfield/az-snake:$(Build.BuildId) >> /dev/null
+      
     displayName: 'Dockle Check Container'
