@@ -21,11 +21,6 @@ steps:
       grep '"tag_name":' | \
       sed -E 's/.*"v([^"]+)".*/\1/'
       )
-      if [[ "${{ parameters.ignoreCheckpoints }}" -eq "" ]]; then
-        CHECKPOINTS_TO_IGNORE=""
-      else
-        CHECKPOINTS_TO_IGNORE=$(echo " ${{ parameters.ignoreCheckpoints }}" | tr -s " " " " | sed "s/[[:space:]]/ -i /g")
-      fi
       wget https://github.com/goodwithtech/dockle/releases/download/v${VERSION}/dockle_${VERSION}_Linux-64bit.tar.gz
       tar zxvf dockle_${VERSION}_Linux-64bit.tar.gz
       
