@@ -53,7 +53,7 @@ withCredentials([usernamePassword(credentialsId: 'd90eecdd-58b1-43d6-98ac-f67e86
 //       """
     
     String gitStatusPostUrl = "https://api.github.com/repos/mikeapsley1/pr-snake/statuses/${gitHash}?access_token=${GHTOKEN}"
-    echo ${gitStatusPostUrl}
+    echo $gitStatusPostUrl
     
      }  
  }
