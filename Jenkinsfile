@@ -1,7 +1,14 @@
 node ('ubuntu-slave'){  
     def app
     stage('Cloning Git') {
-       checkout scm
+      // checkout scm
+        
+    String payload = "${payload}"
+    def jsonObject = readJSON text: payload
+    String gitHash = "${jsonObject.pull_request.head.sha}"
+    
+    sh "git checkout ${gitHash}"
+        
     }  
     
  stage('Build') {
@@ -34,9 +41,7 @@ node ('ubuntu-slave'){
 
     stage('Report Back to Github') {
         
-    String payload = "${payload}"
-    def jsonObject = readJSON text: payload
-    String gitHash = "${jsonObject.pull_request.head.sha}"
+    // TODO
         
  }
     
