@@ -55,7 +55,10 @@ node ('ubuntu-slave'){
    //  }  
         
  withCredentials([string(credentialsId: 'githubtoken', variable: 'token')]) {
-    sh "echo $token"
+   
+     String gitStatusPostUrl = "https://api.github.com/repos/mikeapsley1/pr-snake/statuses/${gitHash}?access_token=$token"
+     
+     
 }
         
         
