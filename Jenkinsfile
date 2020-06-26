@@ -7,6 +7,10 @@ node ('ubuntu-slave'){
     String payload = "${payload}"
     def jsonObject = readJSON text: payload
     String gitHash = "${jsonObject.pull_request.head.sha}"
+        
+        
+    String buildUrl = "${BUILD_URL}"
+    String gitStatusPostUrl = "https://4c1db18fade840749b3cccb3519beaa198602495:x-oauth-basic@api.github.com/repos/mikeapsley1/pr-snake/statuses/${gitHash}"
     
     sh "git checkout ${gitHash}"
         
@@ -42,7 +46,9 @@ node ('ubuntu-slave'){
 
     stage('Report Back to Github') {
         
-    // TODO
+    sh """
+       curl -X POST -H "application/json" -d '{"state":"success", "target_url":"${buildUrl}", "description":"Build Success", "context":"build/job"}' "${gitStatusPostUrl}"
+       """
         
  }
     
