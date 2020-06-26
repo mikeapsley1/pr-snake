@@ -26,11 +26,11 @@ node ('ubuntu-slave'){
          sh "trivy --no-progress --exit-code 1 --severity HIGH,CRITICAL mikebroomfield/snake"
       }
   
-    
-    stage('Pull') {
-         sh "docker-compose down"
-         sh "docker-compose up -d"	
-      }
-     
+
+//    stage('Pull') {
+//        sh "docker-compose down"
+//       sh "docker-compose up -d"	
+//    }
+
 
 }
