@@ -51,6 +51,10 @@ withCredentials([usernamePassword(credentialsId: 'd90eecdd-58b1-43d6-98ac-f67e86
 //    sh """
 //    curl -X POST -H "application/json" -d '{"state":"success", "target_url":"${buildUrl}", "description":"Build Success", "context":"build/job"}' "${gitStatusPostUrl}"
 //       """
+    
+    String gitStatusPostUrl = "https://api.github.com/repos/mikeapsley1/pr-snake/statuses/${gitHash}?access_token=$github-api-token"
+    echo ${gitStatusPostUrl}
+    
      }  
  }
     
