@@ -47,7 +47,7 @@ node ('ubuntu-slave'){
     stage('Report Back to Github') {
         
     sh """
-       curl -X POST -H "application/json" -d '{"state":"success", "target_url":"${buildUrl}", "description":"Build Success", "context":"build/job"}' "${gitStatusPostUrl}"
+       curl -X POST -H "application/json" -d '{"state":"success", "description":"Build Success", "context":"build/job"}' "${gitStatusPostUrl}"
        """
         
  }
