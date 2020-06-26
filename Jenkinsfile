@@ -8,7 +8,6 @@ node ('ubuntu-slave'){
     stage('Cloning Git') {
        
     checkout scm
-        
     
     sh "git checkout ${gitHash}"
         
