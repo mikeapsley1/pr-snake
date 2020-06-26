@@ -1,7 +1,8 @@
 node ('ubuntu-slave'){  
     def app
     stage('Cloning Git') {
-      // checkout scm
+       
+    checkout scm
         
     String payload = "${payload}"
     def jsonObject = readJSON text: payload
