@@ -32,5 +32,12 @@ node ('ubuntu-slave'){
 //       sh "docker-compose up -d"	
 //    }
 
-
+    stage('Report Back to Github') {
+        
+    String payload = "${payload}"
+    def jsonObject = readJSON text: payload
+    String gitHash = "${jsonObject.pull_request.head.sha}"
+        
+ }
+    
 }
