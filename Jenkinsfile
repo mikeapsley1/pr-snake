@@ -3,10 +3,6 @@ def jsonObject = readJSON text: payload
 String gitHash = "${jsonObject.pull_request.head.sha}"
 String buildUrl = "${BUILD_URL}"
 
-//String gitStatusPostUrl = "https://4c1db18fade840749b3cccb3519beaa198602495:x-oauth-basic@api.github.com/repos/mikeapsley1/pr-snake/statuses/${gitHash}"
-String gitStatusPostUrl = "https://api.github.com/repos/mikeapsley1/pr-snake/statuses/${gitHash}?access_token=4c1db18fade840749b3cccb3519beaa198602495"
-
-
 node ('ubuntu-slave'){  
     def app
     stage('Cloning Git') {
@@ -48,10 +44,14 @@ node ('ubuntu-slave'){
 
     stage('Report Back to Github') {
         
+       
+withCredentials([usernamePassword(credentialsId: 'd90eecdd-58b1-43d6-98ac-f67e86859dc1', passwordVariable: 'github-api-token', usernameVariable: 'github-username')]) {
+    
+    String gitStatusPostUrl = "https://api.github.com/repos/mikeapsley1/pr-snake/statuses/${gitHash}?access_token=$github-api-token"
     sh """
     curl -X POST -H "application/json" -d '{"state":"success", "target_url":"${buildUrl}", "description":"Build Success", "context":"build/job"}' "${gitStatusPostUrl}"
        """
-        
+      }  
  }
     
 }
