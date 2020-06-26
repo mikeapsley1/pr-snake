@@ -2,8 +2,10 @@ String payload = "${payload}"
 def jsonObject = readJSON text: payload
 String gitHash = "${jsonObject.pull_request.head.sha}"
 String buildUrl = "${BUILD_URL}"
-String gitStatusPostUrl = "https://4c1db18fade840749b3cccb3519beaa198602495:x-oauth-basic@api.github.com/repos/mikeapsley1/pr-snake/statuses/${gitHash}"
-    
+
+//String gitStatusPostUrl = "https://4c1db18fade840749b3cccb3519beaa198602495:x-oauth-basic@api.github.com/repos/mikeapsley1/pr-snake/statuses/${gitHash}"
+String gitStatusPostUrl = "https://api.github.com/repos/mikeapsley1/pr-snake/statuses/${gitHash}?access_token=4c1db18fade840749b3cccb3519beaa198602495"
+
 
 node ('ubuntu-slave'){  
     def app
